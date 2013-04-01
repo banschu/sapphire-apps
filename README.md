@@ -1,2 +1,2 @@
-sapphire-demos
+sapphire-apps
 ==============
