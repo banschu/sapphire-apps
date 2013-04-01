@@ -20,6 +20,7 @@ app.c
     sapphire.h is a wrapper around all of the header files for the libraries provided by the operating system.  It is provided here so you can directly call into useful libraries (io, keyvalue, etc.) without need additional #define statements.  app.h is just the header file for app.c.
 
     .. code-block:: c
+    :linenos:
 
         PT_THREAD( app_thread( pt_t *pt, void *state ) )
         {
