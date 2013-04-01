@@ -20,7 +20,6 @@ app.c
     sapphire.h is a wrapper around all of the header files for the libraries provided by the operating system.  It is provided here so you can directly call into useful libraries (io, keyvalue, etc.) without need additional #define statements.  app.h is just the header file for app.c.
 
     .. code-block:: c
-    :linenos:
 
         PT_THREAD( app_thread( pt_t *pt, void *state ) )
         {
@@ -31,9 +30,10 @@ app.c
         PT_END( pt );
         }
 
-    This section defines your application thread.  PT_THREAD(), PT_BEGIN() and PT_END() are aready set up for you so do not need to modify them.  As the comment indicates, all you need to do in this section is put your executable application code between PT_BEGIN() and PT_END().  Generally this will be some initialization code, followed by a while(1) loop around some code you want to repeat.  There are two requirements to adhere to in your application code:
+    This section defines your application thread.  PT_THREAD(), PT_BEGIN() and PT_END() are aready set up for you so do not need to modify them.  As the comment indicates, all you need to do in this section is put your executable application code between PT_BEGIN() and PT_END().  Generally this will be some initialization code, followed by a while(1) loop around some code you want to repeat.  There are a few requirements to adhere to in your application code:
 
         #. You must use wait statements to force the application thread to yield. See examples in other projects in this repo.
+        #. Do not expect a variable decalred in your thread to be preserved after using a wait statement.  If you need a variable to persist, declare it as static.  Again, see examples in other projects in this repo.
         #. You cannot use a switch() statement.  This is a non-obvious restriction that comes from using protothreads.
 
     Final section of app.c:
